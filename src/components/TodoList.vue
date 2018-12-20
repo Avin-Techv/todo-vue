@@ -18,6 +18,7 @@
             return {
                 newTodo: '',
                 idForTodo: 3,
+                beforeEditCache: '',
                 todos: [{
                         'id': 1,
                         'title': 'Finish Vuew Screencast',
@@ -59,11 +60,14 @@
             },
 
             editTodo(todo){
-                this.beforeEditCache = to
+                this.beforeEditCache = todo.title
                 todo.editing = true
             },
             
             doneEdit(todo){
+                if(todo.title.trim().length == 0){
+                    todo.title = this.beforeEditCache
+                }
                 todo.editing = false
             },
 
